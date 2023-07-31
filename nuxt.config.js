@@ -16,6 +16,12 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      {
+        rel: "dns-prefetch",
+        href: "https://fonts.gstatic.com/"
+      }
+    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -25,10 +31,18 @@ export default {
   plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: {
+    dirs: [
+      '~/components/',
+      '~/components/global/'
+    ]
+  },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: [
+    '@nuxtjs/google-fonts',
+    '@nuxt/image',
+  ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -43,5 +57,22 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    loaders: {
+      sass: {
+        implementation: require('sass')
+      },
+      scss: {
+        implementation: require('sass')
+      }
+    }
+  },
+
+  googleFonts: {
+    families: {
+      Lato: true,
+    },
+    prefetch: true,
+    download: true
+  }
 }
